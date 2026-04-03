@@ -12,6 +12,19 @@ This project implements a reinforcement learning agent that learns to navigate t
 
 ### Key Results
 
+**Training results** (full simulation runs):
+
+| Phase | Simulations | Win Rate | Avg Moves | Avg Collisions |
+|-------|-------------|----------|-----------|----------------|
+| Phase 1 (5×5) | 300 | 76.0% | 11.7 | 1.6 |
+| Phase 1b (5×5 + obstacles) | 100 | 93.0% | 10.6 | 1.4 |
+| Phase 2 (6×6) | 50 | 98.0% | 23.6 | 0.8 |
+| Phase 2b (6×6 + obstacles) | 200 | 99.5% | 20.0 | 1.2 |
+| Phase 3 (7×7) | 100 | 100.0% | 35.8 | 1.3 |
+| Phase 3b (7×7 + obstacles) | 400 | 72.0% | 39.5 | 5.3 |
+
+**Fine-tuning results** (10-simulation evaluation after training):
+
 | Phase | Win Rate | Avg Moves | Avg Collisions |
 |-------|----------|-----------|----------------|
 | Phase 1 (5×5) | 100% | 10.4 | 0.4 |
@@ -21,7 +34,7 @@ This project implements a reinforcement learning agent that learns to navigate t
 | Phase 3 (7×7) | 90% | 33.1 | 1.0 |
 | Phase 3b (7×7 + obstacles) | 90% | 39.2 | 3.3 |
 
-The fully trained model achieves **≥90% win rate across all phases**, with 100% success on the final phase during testing.
+The model achieves **≥90% win rate across all phases during fine-tuning evaluation**. Training win rates vary, with the most challenging phase (7×7 grid + 6 obstacles) reaching 72.0% over 400 simulations. Earlier phases benefit significantly from transfer learning, with Phases 2–3 (no obstacles) achieving 98–100% during training.
 
 ## How It Works
 
