@@ -98,15 +98,3 @@ class ReplayBuffer:
             print(f"Buffer loaded from {filename} ({len(self.buffer)} experiences)")
         except Exception as e:
             print(f"Error loading buffer: {e}")
-    
-    def is_ready(self, min_size=1000):
-        """
-        Check if the buffer contains enough experiences to start training.
-        
-        Args:
-            min_size: Minimum number of required experiences
-            
-        Returns:
-            True if the buffer is ready for training, False otherwise
-        """
-        return len(self.buffer) >= min_size

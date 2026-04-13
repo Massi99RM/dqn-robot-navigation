@@ -16,6 +16,8 @@ from grid import (
 
 # Configurations for each phase
 PHASE_CONFIG = {
+    # All phases use the final trained model to demonstrate generalization
+    # across difficulty levels after progressive curriculum training.
     "phase_one": {
         "name": "Phase One",
         "model_file": "robot_phase_three_obstacles_model.pth",
@@ -173,7 +175,7 @@ def run_test_simulation(agent, config):
         action = agent.predict(state, training=False)
         
         # Execute action
-        reward, done_episode, info = robot.move_with_action(action, obstacles, goals)
+        robot.move_with_action(action, obstacles, goals)
         
         step_count += 1
         

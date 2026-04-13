@@ -90,30 +90,6 @@ class DQNAgent:
         
         return action
     
-    def predict_with_noise(self, state, noise_factor=0.1):
-        """
-        Predict action by adding noise to Q-values to encourage exploration.
-        Useful to prevent getting stuck in deterministic policies.
-        
-        Args:
-            state: Current robot state
-            noise_factor: Noise factor (0-1)
-            
-        Returns:
-            Action to execute (0-3)
-        """
-        state_tensor = torch.FloatTensor(state).unsqueeze(0).to(self.device)
-        
-        with torch.no_grad():
-            q_values = self.q_network(state_tensor)
-            
-            if noise_factor > 0:
-                noise = torch.randn_like(q_values) * noise_factor
-                q_values = q_values + noise
-            
-            action = q_values.argmax().item()
-        
-        return action
     
     def remember(self, state, action, reward, next_state, done):
         """
@@ -257,30 +233,6 @@ class DQNAgent:
             'training_steps': self.training_step,
             'total_steps': self.steps
         }
-    
-    def set_eval_mode(self):
-        """
-        Set the agent to evaluation mode.
-        """
-        self.epsilon = 0.05
-        self.q_network.eval()
-    
-    def set_train_mode(self):
-        """
-        Set the agent to training mode.
-        """
-        self.q_network.train()
-        
-    def set_epsilon(self, epsilon):
-        """
-        Manually set the epsilon value.
-        Useful to force more or less exploration in specific phases.
-        
-        Args:
-            epsilon: New epsilon value (0-1)
-        """
-        self.epsilon = max(0.0, min(1.0, epsilon))
-        print(f"Epsilon set to: {self.epsilon:.4f}")
 
     def reset_epsilon_for_new_phase(self, new_epsilon=0.3):
         """
@@ -289,28 +241,3 @@ class DQNAgent:
         """
         self.epsilon = new_epsilon
         print(f"Epsilon set to {self.epsilon} for new phase")
-
-    def predict_eval_with_noise(self, state, noise_factor=0.05):
-        """
-        Predict action by adding noise to Q-values to encourage exploration.
-        Useful to prevent getting stuck in deterministic policies.
-        
-        Args:
-            state: Current robot state
-            noise_factor: Noise factor (0-1)
-            
-        Returns:
-            Action to execute (0-3)
-        """
-        state_tensor = torch.FloatTensor(state).unsqueeze(0).to(self.device)
-        
-        with torch.no_grad():
-            q_values = self.q_network(state_tensor)
-            
-            if noise_factor > 0:
-                noise = torch.randn_like(q_values) * noise_factor
-                q_values = q_values + noise
-            
-            action = q_values.argmax().item()
-        
-        return action

@@ -22,7 +22,7 @@ MODEL_FILE = "robot_phase_one_model.pth"
 BUFFER_FILE = "robot_phase_one_buffer.pkl"
 
 
-def draw_simulation(robot, goals, obstacles, ax, title="Simulation", current_moves=None):
+def draw_simulation(robot, goals, obstacles, ax, title="Simulation", current_moves=0):
     """
     Draw the current state of the simulation on the grid.
     
@@ -158,10 +158,6 @@ def run_simulation(agent, show_graphics=False):
         plt.draw()
         input("Press ENTER to continue...")
         plt.close(fig)
-
-    final_moves = robot.total_moves
-    if step_count >= MAX_MOVES and not victory:
-        final_moves = MAX_MOVES
     
     # Simulation statistics
     return {
