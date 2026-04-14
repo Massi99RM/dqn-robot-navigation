@@ -6,6 +6,21 @@
 
 A Deep Q-Network (DQN) implementation for training a robot to navigate grid environments, collect goals, and avoid obstacles. Developed as a Bachelor's thesis in Computer Engineering.
 
+## Demo Videos
+
+### Training Demo
+
+This video demonstrates the robot's training across two phases. In the first phase, the robot leverages previously learned knowledge. In the second phase, it uses transfer learning for the first time in that environment. The training is challenging—the robot nearly fails, coming just one collision away from game over.
+
+[Watch the training demo video](https://github.com/Massi99RM/dqn-robot-navigation/releases/tag/demo)
+
+### Testing Demo
+
+This video demonstrates the robot testing on the final three phases using the fully trained model. Despite never encountering the obstacle-filled phase two or phase three, the model successfully completes all three phases.
+
+[Watch the testing demo video](https://github.com/Massi99RM/dqn-robot-navigation/releases/tag/demo2)
+
+
 ## Overview
 
 This project implements a reinforcement learning agent that learns to navigate through increasingly complex grid environments. The robot must collect all goals while avoiding obstacles and staying within move limits. Training progresses through six phases with escalating difficulty, using **transfer learning** to carry knowledge from simpler to more complex environments.
